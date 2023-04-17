@@ -90,6 +90,47 @@
       "options": {
         "buildTarget": "store:build"
       }
+    },
+    "storybook": {
+      "executor": "@storybook/angular:start-storybook",
+      "options": {
+        "port": 4400,
+        "configDir": "./.storybook",
+        "browserTarget": "store:build",
+        "compodoc": false
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "build-storybook": {
+      "executor": "@storybook/angular:build-storybook",
+      "outputs": ["{options.outputDir}"],
+      "options": {
+        "outputDir": "dist/storybook/store",
+        "configDir": "./.storybook",
+        "browserTarget": "store:build",
+        "compodoc": false
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "static-storybook": {
+      "executor": "@nrwl/web:file-server",
+      "options": {
+        "buildTarget": "store:build-storybook",
+        "staticFilePath": "dist/storybook/store"
+      },
+      "configurations": {
+        "ci": {
+          "buildTarget": "store:build-storybook:ci"
+        }
+      }
     }
   }
 }

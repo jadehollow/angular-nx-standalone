@@ -1,22 +1,19 @@
 {
-  "name": "e2e",
+  "name": "shared-ui-e2e",
   "$schema": "../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "e2e/src",
+  "sourceRoot": "shared-ui-e2e/src",
   "projectType": "application",
   "targets": {
     "e2e": {
       "executor": "@nrwl/cypress:cypress",
       "options": {
-        "cypressConfig": "e2e/cypress.config.ts",
-        "devServerTarget": "store:serve:development",
+        "cypressConfig": "shared-ui-e2e/cypress.config.ts",
+        "devServerTarget": "shared-ui:storybook",
         "testingType": "e2e"
       },
       "configurations": {
-        "production": {
-          "devServerTarget": "store:serve:production"
-        },
         "ci": {
-          "devServerTarget": "store:serve-static"
+          "devServerTarget": "shared-ui:static-storybook:ci"
         }
       }
     },
@@ -24,10 +21,10 @@
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["e2e/**/*.{js,ts}"]
+        "lintFilePatterns": ["shared-ui-e2e/**/*.{js,ts}"]
       }
     }
   },
   "tags": [],
-  "implicitDependencies": ["store"]
+  "implicitDependencies": ["shared-ui"]
 }
